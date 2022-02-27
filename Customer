@@ -1,0 +1,62 @@
+/*Contains customerName, licenseState, licenseNumber, telephoneNumber, and creditCardNumber
+ * Contains getter methods for all instance variables
+ * Contains setter methods only for telephoneNumber and creditCardNumber
+ */
+public class Customer {
+	private String customerName;
+	private String licenseState;
+	private int licenseNumber;
+	private String telephoneNumber;
+	private long creditCardNumber;
+
+	// Initializes object Customer
+	public Customer(String customerName, String licenseState, int licenseNumber, String telephoneNumber, long creditCardNumber) {
+		super();
+		this.customerName = customerName;
+		this.licenseState = licenseState;
+		this.licenseNumber = licenseNumber;
+		this.telephoneNumber = telephoneNumber;
+		this.creditCardNumber = creditCardNumber;
+	}
+
+	// sets creditCardNumber
+	public void setCreditCardNumber(long creditCardNumber) {
+		this.creditCardNumber = creditCardNumber;
+	}
+
+	// sets telephoneNumber
+	public void settelephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
+	}
+
+	// returns creditCardNumber
+	public long getCreditCardNumber() {
+		return creditCardNumber;
+	}
+
+	// sets TelephoneNumber
+	public void setTelephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
+	}
+
+	// returns CusomerName
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	// returns licenseState
+	public String getLicenseState() {
+		return licenseState;
+	}
+
+	// returns licenseNumber
+	public int getLicenseNumber() {
+		return licenseNumber;
+	}
+
+	// returns telephoneNumber
+	public String getTelephoneNumber() {
+		return telephoneNumber;
+	}
+
+}
