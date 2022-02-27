@@ -1,0 +1,38 @@
+/* Contains makeModel, tagState, tagNumber, rentalClass
+ *  Provides getters for makeModel, tagState, tagNumber, and rentalClass
+ */
+public class Vehicle {
+	private String makeModel;
+	private String tagState;
+	private String tagNumber;
+	private RentalClass rentalClass;
+
+	// Initializes object Vehicle
+	public Vehicle(String makeModel, String tagState, String tagNumber, RentalClass rentalClass) {
+		super();
+		this.makeModel = makeModel;
+		this.tagState = tagState;
+		this.tagNumber = tagNumber;
+		this.rentalClass = rentalClass;
+	}
+
+	// returns makeModel
+	public String getMakeModel() {
+		return makeModel;
+	}
+
+	// returns tagState
+	public String getTagState() {
+		return tagState;
+	}
+
+	// returns tagNumber
+	public String getTagNumber() {
+		return tagNumber;
+	}
+
+	// returns rentalClass
+	public RentalClass getRentalClass() {
+		return rentalClass;
+	}
+}
