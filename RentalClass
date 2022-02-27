@@ -1,0 +1,33 @@
+/*
+ *  Contains className, dailyRate, and weeklyRate
+ *  Provides getters for className, dailyRate, and weeklyRate
+ */
+public class RentalClass {
+	private String className;
+	private double dailyRate;
+	private double weeklyRate;
+
+	// Initializes object RentalClass
+	public RentalClass(String className, double dailyRate, double weeklyRate) {
+		super();
+		this.className = className;
+		this.dailyRate = dailyRate;
+		this.weeklyRate = weeklyRate;
+	}
+
+	// returns className
+	public String getClassName() {
+		return className;
+	}
+
+	// returns dailyRate
+	public double getDailyRate() {
+		return dailyRate;
+	}
+
+	// returns weeklyRate
+	public double getWeeklyRate() {
+		return weeklyRate;
+	}
+
+}
