@@ -1,0 +1,71 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class CarRentalMain {
+	private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+	
+	public static void main(String[] args) throws FileNotFoundException {
+		Scanner inScanner = new Scanner(System.in); // Read the file name from standard input
+		String fileName = inScanner.next();
+		
+		Scanner fileScanner = new Scanner(new FileInputStream(fileName));
+		Pattern skipPrompt = Pattern.compile("[^:]*:\\s*");
+		
+		fileScanner.skip(skipPrompt);
+		String customerName = fileScanner.nextLine();  
+		
+		fileScanner.skip(skipPrompt);
+		String licenseState = fileScanner.nextLine();  
+		
+		fileScanner.skip(skipPrompt);
+		
+		int licenseNumber = Integer.parseInt(fileScanner.nextLine().trim());  
+		
+		fileScanner.skip(skipPrompt);
+		String telephone = fileScanner.nextLine().trim();  
+		
+		fileScanner.skip(skipPrompt);
+		long creditCard = Long.parseLong(fileScanner.nextLine().trim());  
+		
+		fileScanner.skip(skipPrompt);
+		String vehicleName = fileScanner.nextLine().trim();  
+		
+		fileScanner.skip(skipPrompt);
+		String tagState = fileScanner.nextLine().trim();  
+		
+		fileScanner.skip(skipPrompt);
+		String tagNumber = fileScanner.nextLine().trim();  
+		
+		fileScanner.skip(skipPrompt);
+		String rentalClassName = fileScanner.nextLine().trim();  
+		
+		fileScanner.skip(skipPrompt);
+		double dailyRate = Double.parseDouble(fileScanner.nextLine().trim());  
+		
+		fileScanner.skip(skipPrompt);
+		double weeklyRate = Double.parseDouble(fileScanner.nextLine().trim());  
+		
+		fileScanner.skip(skipPrompt);
+		LocalDateTime timeOut = LocalDateTime.parse(fileScanner.nextLine().trim(), dateFormatter);  
+		
+		fileScanner.skip(skipPrompt);
+		LocalDateTime timeIn = LocalDateTime.parse(fileScanner.nextLine().trim(), dateFormatter); 
+		
+		RentalClass rentalClass = new RentalClass(rentalClassName, dailyRate, weeklyRate);
+		
+		Vehicle vehicle = new Vehicle(vehicleName, tagState, tagNumber, rentalClass);
+		
+		Customer customer = new Customer(customerName, licenseState, licenseNumber, telephone, creditCard);
+		
+		RentalAgreement rentalAgreement = new RentalAgreement(customer, vehicle, timeOut);
+		
+		rentalAgreement.setTimeIn(timeIn);
+		
+		rentalAgreement.printReceipt();
+	}
+	
+}
