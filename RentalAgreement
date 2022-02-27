@@ -1,0 +1,96 @@
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+
+/*  Contains customer, vehicle, timeOut, and timeIn
+ *  Provides getters for customer, vehicle, timeOut, and timeIn, and setters for timeIn
+ *  Contains methods genRentalCharge(), getAirportTax(), getTax(), getTotal(), and printReceipt() 
+ */
+public class RentalAgreement {
+	private Customer customer;
+	private Vehicle vehicle;
+	private LocalDateTime timeOut;
+	private LocalDateTime timeIn;
+
+	// Initializes object RentalAgreement
+	public RentalAgreement(Customer customer, Vehicle vehicle, LocalDateTime timeOut) {
+		super();
+		this.customer = customer;
+		this.vehicle = vehicle;
+		this.timeOut = timeOut;
+	}
+
+	// returns customer
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	// returns vehicle
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	// returns timeOut
+	public LocalDateTime getTimeOut() {
+		return timeOut;
+	}
+
+	// returns timeIn
+	public LocalDateTime getTimeIn() {
+		return timeIn;
+	}
+
+	// sets timeIn
+	public void setTimeIn(LocalDateTime timeIn) {
+		this.timeIn = timeIn;
+	}
+
+	// The getRentalCharge() is to return the number of days rented times the daily
+	// rental rate.
+	public double getRentalCharge() {
+		return ((int) Duration.between(timeOut, timeIn).plusMinutes(23 * 60).toDays()
+				* (vehicle.getRentalClass().getDailyRate()));
+	}
+
+	// The getAirportTax() is to return the number of days rented times $ 15.00.
+	public double getAirportTax() {
+		return ((int) Duration.between(timeOut, timeIn).plusMinutes(23 * 60).toDays() * 15.00);
+	}
+
+	// The getTax() is to return the rental change times 6%.
+	public double getTax() {
+		return (getRentalCharge() * 0.06);
+	}
+
+	// The getTotal() is to return the sum of rental charge, airport tax, and tax.
+	public double getTotal() {
+		return getRentalCharge() + getAirportTax() + getTax();
+	}
+
+	// Prints the final receipt
+	public void printReceipt() {
+		System.out.println("          E Z - R I D E R");
+		System.out.println("           Rental Receipt");
+		System.out.println();
+		System.out.println("Customer       : " + customer.getCustomerName());
+		System.out.println("Driver License : " + customer.getLicenseState() + " " + customer.getLicenseNumber());
+		System.out.println("Telephone      : " + customer.getTelephoneNumber());
+		System.out.println("Credit Card    : " + customer.getCreditCardNumber());
+		System.out.println();
+		System.out.println("Make/Model     : " + vehicle.getMakeModel());
+		System.out.println("Tag #          : " + vehicle.getTagState() + " " + vehicle.getTagNumber());
+		System.out.println("Rent Class     : " + vehicle.getRentalClass().getClassName());
+		System.out.printf("Daily Rate     : $    %.2f\n", vehicle.getRentalClass().getDailyRate());
+		System.out.printf("Weekly Rate    : $   %.2f\n", vehicle.getRentalClass().getWeeklyRate());
+		System.out.println();
+		System.out.printf("Date/Time Out  : %d/%d/%d at %d:%2d%n", timeOut.getMonthValue(), timeOut.getDayOfMonth(),
+				timeOut.getYear(), timeOut.getHour(), timeOut.getMinute());
+		System.out.printf("Date/Time In   : %d/%d/%d at %d:%2d%n", timeIn.getMonthValue(), timeIn.getDayOfMonth(),
+				timeIn.getYear(), timeIn.getHour(), timeIn.getMinute());
+		System.out.println();
+		System.out.printf("Rental Charge  : $   %6.2f\n", getRentalCharge());
+		System.out.printf("Airport Tax    : $    %4.2f\n", getAirportTax());
+		System.out.printf("Sales Tax      : $    %5.2f\n", getTax());
+		System.out.printf("Total          : $   %6.2f\n", getTotal());
+	}
+}
